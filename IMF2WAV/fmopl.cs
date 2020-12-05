@@ -77,15 +77,15 @@ namespace IMF2WAV
         //#define EG_OFF			0
         public const byte EG_OFF = 0;
 
-        /*
-        * save output as raw 16-bit sample *
+        //* save output as raw 16-bit sample *
 
-        *#define SAVE_SAMPLE*
+        //*#define SAVE_SAMPLE*
 
-        #ifdef SAVE_SAMPLE
-        INLINE signed int acc_calc(signed int value)
+        //#ifdef SAVE_SAMPLE
+        //INLINE signed int acc_calc(signed int value)
+        public int acc_calc(int value)
         {
-            if (value>=0)
+            if (value >= 0)
             {
                 if (value < 0x0200)
                     return (value & ~0);
@@ -101,23 +101,23 @@ namespace IMF2WAV
                     return (value & ~31);
                 return (value & ~63);
             }
-            *else value < 0*
+            //*else value < 0 *
             if (value > -0x0200)
-                return (~abs(value) & ~0);
+                return (~Math.Abs(value) & ~0);
             if (value > -0x0400)
-                return (~abs(value) & ~1);
+                return (~Math.Abs(value) & ~1);
             if (value > -0x0800)
-                return (~abs(value) & ~3);
+                return (~Math.Abs(value) & ~3);
             if (value > -0x1000)
-                return (~abs(value) & ~7);
+                return (~Math.Abs(value) & ~7);
             if (value > -0x2000)
-                return (~abs(value) & ~15);
+                return (~Math.Abs(value) & ~15);
             if (value > -0x4000)
-                return (~abs(value) & ~31);
-            return (~abs(value) & ~63);
+                return (~Math.Abs(value) & ~31);
+            return (~Math.Abs(value) & ~63);
         }
 
-
+        /*
         static FILE *sample[1];
             #if 1	*save to MONO file *
                 #define SAVE_ALL_CHANNELS \
